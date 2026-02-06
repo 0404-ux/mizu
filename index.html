@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>ペット飼育適正診断</title>
+  <title>ペット飼育判定アプリ</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
@@ -17,89 +17,90 @@
     }
 
     .container {
-      max-width: 500px;
+      max-width: 520px;
       margin: auto;
-      background: white;
+      background: #fff;
       padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
 
     label {
+      font-weight: bold;
+      margin-top: 10px;
       display: block;
-      margin-top: 12px;
     }
 
-    select, input {
+    select, input, button {
       width: 100%;
       padding: 8px;
-      margin-top: 4px;
+      margin-top: 6px;
     }
 
     button {
-      margin-top: 20px;
-      width: 100%;
-      padding: 10px;
       background: #2c7be5;
-      color: white;
+      color: #fff;
       border: none;
       border-radius: 6px;
       font-size: 16px;
-    }
-
-    #animalImage {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-      border-radius: 8px;
+      cursor: pointer;
       margin-top: 12px;
     }
 
-    #result {
-      margin-top: 20px;
-      padding: 12px;
-      background: #eef3ff;
-      border-radius: 6px;
+    img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin: 12px 0;
+    }
+
+    .result-card {
+      margin-top: 15px;
+      padding: 15px;
+      border-radius: 10px;
+    }
+
+    .ok {
+      background: #e6f7ee;
+      border-left: 6px solid #2ecc71;
+    }
+
+    .ng {
+      background: #fdecea;
+      border-left: 6px solid #e74c3c;
     }
   </style>
 </head>
 
 <body>
-  <h1>🐾 ペット飼育適正診断</h1>
+  <h1>🐾 ペット飼育判定アプリ</h1>
 
   <div class="container">
-    <label>
-      飼いたい動物
-      <select id="animal" onchange="updateImage()">
-        <option value="dog">犬</option>
-        <option value="cat">猫</option>
-        <option value="rabbit">うさぎ</option>
-        <option value="bird">小鳥</option>
-        <option value="hamster">ハムスター</option>
-      </select>
-    </label>
+    <label>飼いたい動物</label>
+    <select id="animal" onchange="updateImage()">
+      <option value="dog">犬</option>
+      <option value="cat">猫</option>
+      <option value="rabbit">うさぎ</option>
+      <option value="bird">小鳥</option>
+      <option value="hamster">ハムスター</option>
+    </select>
 
-    <img id="animalImage" src="" alt="動物の写真">
+    <img id="animalImage" alt="動物の画像">
 
-    <label>
-      1日に世話できる時間（分）
-      <input type="number" id="time">
-    </label>
+    <label>1日に世話できる時間（分）</label>
+    <input type="number" id="time">
 
-    <label>
-      月に使える費用（円）
-      <input type="number" id="money">
-    </label>
+    <label>1か月に使えるお金（円）</label>
+    <input type="number" id="money">
 
-    <label>
-      留守が多い
-      <select id="away">
-        <option value="no">いいえ</option>
-        <option value="yes">はい</option>
-      </select>
-    </label>
+    <label>長時間の留守はありますか？</label>
+    <select id="away">
+      <option value="no">いいえ</option>
+      <option value="yes">はい</option>
+    </select>
 
-    <button onclick="checkPet()">診断する</button>
+    <button onclick="checkPet()">判定する</button>
 
     <div id="result"></div>
   </div>
